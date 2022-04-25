@@ -1,6 +1,10 @@
 package AirBnb;
 
 import  java.util.*;
+import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
+
+
 
 
 public class Host extends User {
@@ -10,7 +14,7 @@ public class Host extends User {
     // down cast
     public Host() {}
 
-    public Host(String name, String phoneNumber, String password, String email, String nation, String id, int age, boolean gender) {
+        public Host(String name, String phoneNumber, String password, String email, String nation, String id, int age, String gender) {
         super(name, phoneNumber, password, email, nation, id, age, gender);
     }
 

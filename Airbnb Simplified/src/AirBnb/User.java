@@ -8,11 +8,11 @@ public class User {
     String nation;
     String id;
     int age;
-    boolean gender;
+    String gender;
 
     public User() {}
 
-    public User(String name, String phoneNumber, String password, String email, String nation, String id, int age, boolean gender) {
+    public User(String name, String phoneNumber, String password, String email, String nation, String id, int age, String gender) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.password = password;
