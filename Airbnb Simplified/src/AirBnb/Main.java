@@ -8,7 +8,8 @@ import java.util.Scanner; // Import the Scanner class to read text files
 public class Main {
     public static void main(String[] args) {
         FilesHandeler f=new FilesHandeler();
-        f.ReadTraverlerData();
+        f.ReadPropertiesData();
+//        f.WriteToHostData();
  }
 }
 
