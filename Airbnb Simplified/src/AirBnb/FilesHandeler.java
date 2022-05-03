@@ -67,6 +67,8 @@ public class FilesHandeler {
                 int x = Integer.parseInt(String.valueOf(Row[4])); //numofguest
                 double y = Double.parseDouble(String.valueOf(Row[2])); //price
                 double y2 = Double.parseDouble(String.valueOf(Row[3])); //area
+
+
                 properties.add(new Properties (Row[0],Row[1],y,y2,x,Row[5],Row[6]));
             }
                myReader.close();
@@ -74,7 +76,7 @@ public class FilesHandeler {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-             System.out.println(properties.get(1).getPlace());
+
     }
 
 
@@ -109,7 +111,7 @@ public class FilesHandeler {
                 myWriter.write(',');
                 myWriter.write(hosts.get(i).id);
                 myWriter.write(',');
-                myWriter.write(hosts.get(i).age);
+                myWriter.write(Integer.toString(hosts.get(i).age));
                 myWriter.write(',');
                 myWriter.write(hosts.get(i).gender);
                 myWriter.write(',');
@@ -125,17 +127,72 @@ public class FilesHandeler {
     }
 
 
-    public void WriteToTraverlersData(){}
+    public void WriteToTraverlersData() {
+        try
+        {
+
+            FileWriter myWriter = new FileWriter(TraverlerPath);
+            for(int i=0;i<travelers.size();i++) {
+
+                myWriter.write(travelers.get(i).name);
+                myWriter.write(',');
+                myWriter.write(travelers.get(i).phoneNumber);
+                myWriter.write(',');
+                myWriter.write(travelers.get(i).password);
+                myWriter.write(',');
+                myWriter.write(travelers.get(i).email);
+                myWriter.write(',');
+                myWriter.write(travelers.get(i).nation);
+                myWriter.write(',');
+                myWriter.write(travelers.get(i).id);
+                myWriter.write(',');
+                myWriter.write(Integer.toString(travelers.get(i).age));
+                myWriter.write(',');
+                myWriter.write(travelers.get(i).gender);
+                myWriter.write(',');
+                myWriter.write('\n');
+            }
+
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
 
 
     public void WriteToPropertiesData(){}
 
 
        /*
-       * display
+       * display(KOLO)
        *
-       * delete
+       * delete(PROP)
+
        * */
+    public void DeleteHostData(String id)
+    {
+        for (int i=0;i<hosts.size();i++)
+        {
+            if (id.equals(hosts.get(i).id))
+            {
+            hosts.remove(i);
+            break;
+            }
+        }
+    }
+    public void DeleteTravelerData(String id)
+    {
+        for (int i = 0; i  < travelers.size();i++)
+        {
+            if (id.equals(travelers.get(i).id))
+            {
+                travelers.remove(i);
+                break;
+            }
+        }
+    }
 
 
 }

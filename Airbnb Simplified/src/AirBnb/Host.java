@@ -23,6 +23,11 @@ public class Host extends User {
         History.add(r);
     }
 
+    public void setProperties(ArrayList<Properties> properties) {
+        this.properties = properties;
+    }
+
+
     public void AddProperty() {
         // el main eli behiry mo3tard 3aleiha
 
