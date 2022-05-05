@@ -12,10 +12,21 @@ public class FilesHandeler {
     private ArrayList<Host> hosts = new ArrayList<Host>();
     private ArrayList<Traveler> travelers = new ArrayList<Traveler>();
     private ArrayList<Properties> properties = new ArrayList<Properties>();
-    private String HostPath = "D:/Project/DataStrucures/Airbnb/Airbnb Simplified/src/AirBnb/Host_File.csv";
-    private String TraverlerPath = "D:/Project/DataStrucures/Airbnb/Airbnb Simplified/src/AirBnb/Traveller_file.csv";
-    private String PropertiesPath = "D:/Project/DataStrucures/Airbnb/Airbnb Simplified/src/AirBnb/Properties_files .csv";
+    private String HostPath = "E:/AirbnbbSimplified-master/Airbnb Simplified/src/AirBnb/Host_File.csv";
+    private String TraverlerPath = "E:/AirbnbbSimplified-master/Airbnb Simplified/src/AirBnb/Traveller_file.csv";
+    private String PropertiesPath = "E:/AirbnbbSimplified-master/Airbnb Simplified/src/AirBnb/Properties_files .csv";
+    int counter=0;
+    public ArrayList<Host> getHosts() {
+        return hosts;
+    }
 
+    public ArrayList<Traveler> getTravelers() {
+        return travelers;
+    }
+
+    public ArrayList<Properties> getProperties() {
+        return properties;
+    }
 
     public void ReadHostData() {
 
@@ -27,6 +38,18 @@ public class FilesHandeler {
                 String[] Row = Data.split(",");
                 int x = Integer.parseInt(String.valueOf(Row[6]));
                 hosts.add(new Host(Row[0], Row[1], Row[2], Row[3], Row[4], Row[5], x, Row[7]));
+
+
+                for (int i=8;i< Row.length;i=i+7)
+                {
+                    properties=new ArrayList<Properties>();
+                    double d1 = Double.parseDouble(String.valueOf(Row[i+2]));
+                    double d2 = Double.parseDouble(String.valueOf(Row[i+3]));
+                    int i3 = Integer.parseInt(String.valueOf(Row[i+4]));
+                    properties.add(new Properties(Row[i],Row[i+1],d1,d2,i3,Row[i+5],Row[i+6]));
+                }
+                hosts.get(counter).setProperties(properties);
+                counter=counter+1;
             }
             myReader.close();
         } catch (FileNotFoundException e) {
@@ -46,6 +69,7 @@ public class FilesHandeler {
                 String [] Row = Data.split(",");
                 int x = Integer.parseInt(String.valueOf(Row[6]));
                 travelers.add(new Traveler(Row[0],Row[1],Row[2],Row[3],Row[4],Row[5],x,Row[7]));
+
             }
                myReader.close();
            } catch (FileNotFoundException e) {
@@ -92,11 +116,13 @@ public class FilesHandeler {
     }
 
 
+
     public void WriteToHostData(){
         try
         {
 
             FileWriter myWriter = new FileWriter(HostPath);
+            int counter=0;
             for(int i=0;i<hosts.size();i++) {
 
                 myWriter.write(hosts.get(i).name);
@@ -115,7 +141,28 @@ public class FilesHandeler {
                 myWriter.write(',');
                 myWriter.write(hosts.get(i).gender);
                 myWriter.write(',');
+
+                for(int j=0;j< hosts.get(i).getProperties().size();j++)
+                {
+
+                    myWriter.write(hosts.get(i).getProperties().get(j).getCapacity());
+                    myWriter.write(',');
+                    myWriter.write(hosts.get(i).getProperties().get(j).getPlace());
+                    myWriter.write(',');
+                    myWriter.write(Double.toString(hosts.get(i).getProperties().get(j).getPrice()));
+                    myWriter.write(',');
+                    myWriter.write(Double.toString(hosts.get(i).getProperties().get(j).getArea()));
+                    myWriter.write(',');
+                    myWriter.write(Integer.toString(hosts.get(i).getProperties().get(j).getNumOfGuests()));
+                    myWriter.write(',');
+                    myWriter.write(hosts.get(i).getProperties().get(j).getStartDate());
+                    myWriter.write(',');
+                    myWriter.write(hosts.get(i).getProperties().get(j).getEndDate());
+                    myWriter.write(',');
+
+                }
                 myWriter.write('\n');
+
             }
 
             myWriter.close();
@@ -127,7 +174,8 @@ public class FilesHandeler {
     }
 
 
-    public void WriteToTraverlersData() {
+    public void WriteToTraverlersData()
+    {
         try
         {
 
@@ -163,17 +211,51 @@ public class FilesHandeler {
 
 
     public void WriteToPropertiesData(){}
+    public void DisplayHostData() {
 
+        try {
+            File HP = new File(HostPath);
+            Scanner myReader = new Scanner(HP);
+            while (myReader.hasNextLine()) {
+                String Data = myReader.nextLine();
+                String[] Row = Data.split(",");
+                for (int i=0;i< Row.length;i++)
+                {
+                    System.out.print(Row[i]);
+                    System.out.print(',');
+                }
+                System.out.println('\n');
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+    public void DisplayTravelersData() {
 
-       /*
-       * display(KOLO)
-       *
-       * delete(PROP)
-
-       * */
+        try {
+            File HP = new File(TraverlerPath);
+            Scanner myReader = new Scanner(HP);
+            while (myReader.hasNextLine()) {
+                String Data = myReader.nextLine();
+                String[] Row = Data.split(",");
+                for (int i=0;i< Row.length;i++)
+                {
+                    System.out.print(Row[i]);
+                    System.out.print(',');
+                }
+                System.out.println('\n');
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
     public void DeleteHostData(String id)
     {
-        for (int i=0;i<hosts.size();i++)
+        for (int i=0;i<= hosts.size();i++)
         {
             if (id.equals(hosts.get(i).id))
             {
@@ -184,7 +266,7 @@ public class FilesHandeler {
     }
     public void DeleteTravelerData(String id)
     {
-        for (int i = 0; i  < travelers.size();i++)
+        for (int i=0;i<= travelers.size();i++)
         {
             if (id.equals(travelers.get(i).id))
             {

@@ -23,9 +23,9 @@ public class Properties {
         EndDate = endDate;
     }
     /*
-    arrys of months [12]={kol months fe ada el ayam}
-    array of days [365]=
-    * */
+        arrys of months [12]={kol months fe ada el ayam}
+        array of days [365]=
+        * */
     public int indexOfDay(int day,int month) {
          int months[] = {0,31, 28, 31, 31, 31, 30, 31, 31, 30, 31, 30, 31},ans = 0;
          // ans = no.of free days
@@ -65,10 +65,6 @@ public class Properties {
             isBookedDay[i] = false;
     }
 
-    public String getPlace() {
-        return Place;
-    }
-
     public void setPlace(String place) {
         Place = place;
     }
@@ -76,6 +72,31 @@ public class Properties {
     function betgam3 el host eli 3andhom properties fadya
     attribute boolean empty for properties
     */
+    public String getPlace() {
+        return Place;
+    }
 
+    public String getCapacity() {
+        return Capacity;
+    }
 
+    public double getPrice() {
+        return Price;
+    }
+
+    public double getArea() {
+        return Area;
+    }
+
+    public int getNumOfGuests() {
+        return NumOfGuests;
+    }
+
+    public String getStartDate() {
+        return StartDate;
+    }
+
+    public String getEndDate() {
+        return EndDate;
+    }
 }

@@ -18,6 +18,9 @@ public class Host extends User {
         super(name, phoneNumber, password, email, nation, id, age, gender);
     }
 
+    public ArrayList<Properties> getProperties() {
+        return properties;
+    }
 
     public void AddRate(Rate r) {
         History.add(r);
