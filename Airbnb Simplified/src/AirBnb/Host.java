@@ -14,7 +14,7 @@ public class Host extends User {
     // down cast
     public Host() {}
 
-        public Host(String name, String phoneNumber, String password, String email, String nation, String id, int age, String gender) {
+    public Host(String name, String phoneNumber, String password, String email, String nation, String id, int age, String gender) {
         super(name, phoneNumber, password, email, nation, id, age, gender);
     }
 
@@ -72,6 +72,5 @@ public class Host extends User {
     function tamshi 3ala el properties
 
     */
-
 
 }

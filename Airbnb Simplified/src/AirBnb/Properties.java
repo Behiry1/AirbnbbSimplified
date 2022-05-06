@@ -99,4 +99,9 @@ public class Properties {
     public String getEndDate() {
         return EndDate;
     }
+
+    public void DisplayProp()
+    {
+        System.out.println(getPlace()+" "+getPrice()+" "+ getArea()+ " "+ +getNumOfGuests()+" "+getStartDate()+" "+getEndDate());
+    }
 }

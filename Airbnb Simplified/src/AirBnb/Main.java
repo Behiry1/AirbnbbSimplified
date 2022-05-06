@@ -6,13 +6,18 @@ import java.util.ArrayList;
 import java.util.Scanner; // Import the Scanner class to read text files
 
 public class Main {
-    public static void main(String[] args) {
-        FilesHandeler f=new FilesHandeler();
-        f.ReadTraverlerData();
-        f.DisplayTravelersData();
+    public static void main(String[] args)
+    {   FilesHandeler f=new FilesHandeler();
+        f.ReadHostData();
 
 
+        Traveler T =new Traveler(f);
+        T.SearchCity("cairo");
 
+     /*
+     * 1- traveler ---> search
+     * 2- User ----> sign in we out
+     * */
 
     }
 }

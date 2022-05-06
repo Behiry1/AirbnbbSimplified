@@ -39,10 +39,10 @@ public class FilesHandeler {
                 int x = Integer.parseInt(String.valueOf(Row[6]));
                 hosts.add(new Host(Row[0], Row[1], Row[2], Row[3], Row[4], Row[5], x, Row[7]));
 
-
-                for (int i=8;i< Row.length;i=i+7)
+                properties=new ArrayList<Properties>();
+                for (int i=8; i<Row.length ;i=i+7)
                 {
-                    properties=new ArrayList<Properties>();
+
                     double d1 = Double.parseDouble(String.valueOf(Row[i+2]));
                     double d2 = Double.parseDouble(String.valueOf(Row[i+3]));
                     int i3 = Integer.parseInt(String.valueOf(Row[i+4]));
@@ -76,7 +76,7 @@ public class FilesHandeler {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-             System.out.println(travelers.get(1).id);
+
     }
 
 
