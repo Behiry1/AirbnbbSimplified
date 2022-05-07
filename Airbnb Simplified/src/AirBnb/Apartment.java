@@ -11,8 +11,8 @@ public class Apartment extends Properties
 
     public Apartment() {}
 
-    public Apartment(String capacity, String place, double price, double area, int numOfGuests, String startDate, String endDate, int numOfRooms, int floor, boolean terasse) {
-        super(capacity, place, price, area, numOfGuests, startDate, endDate);
+    public Apartment(String capacity, String place, double price, double area, int numOfGuests, int numOfRooms, int floor, boolean terasse,String f) {
+        super(capacity, place, price, area, numOfGuests,f) ;
         NumOfRooms = numOfRooms;
         Floor = floor;
         Terasse = terasse;

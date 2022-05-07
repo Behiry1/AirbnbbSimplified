@@ -42,12 +42,12 @@ public class Host extends User {
 
         if(choice == 1) {
             System.out.println(" enter attribute ");
-            Hotel cur = new Hotel(IN.next(),IN.next(),IN.nextDouble(),IN.nextDouble(),IN.nextInt(),IN.next(),IN.next(),IN.next(),IN.nextBoolean(),IN.nextBoolean());
+            Hotel cur = new Hotel(IN.next(),IN.next(),IN.nextDouble(),IN.nextDouble(),IN.nextInt(),IN.next(),IN.nextBoolean(),IN.nextBoolean(), IN.next());
             properties.add(cur);
         }
         else {
             System.out.println("entr attribute ");
-            Apartment cur = new Apartment(IN.next(),IN.next(),IN.nextDouble(),IN.nextDouble(),IN.nextInt(),IN.next(),IN.next(),IN.nextInt(),IN.nextInt(),IN.nextBoolean());
+            Apartment cur = new Apartment(IN.next(),IN.next(),IN.nextDouble(),IN.nextDouble(),IN.nextInt(),IN.nextInt(),IN.nextInt(),IN.nextBoolean(),IN.next());
             properties.add(cur);
         }
     }

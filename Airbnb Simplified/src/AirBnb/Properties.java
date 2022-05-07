@@ -8,24 +8,63 @@ public class Properties {
     private double Price;
     private double Area;
     private int NumOfGuests;
-    private String StartDate;
-    private String EndDate;
-    private boolean[] isBookedDay = new boolean[365];
+    public LinkedList theDays;
+
     public Properties() {}
 
-    public Properties(String capacity, String place, double price, double area, int numOfGuests, String startDate, String endDate) {
+    public Properties(String capacity, String place, double price, double area, int numOfGuests, String BitString) {
         Capacity = capacity;
         Place = place;
         Price = price;
         Area = area;
         NumOfGuests = numOfGuests;
-        StartDate = startDate;
-        EndDate = endDate;
+        if(BitString.length() < 365)
+            theDays = new LinkedList();
+        else
+            theDays = new LinkedList(BitString);
     }
     /*
         arrys of months [12]={kol months fe ada el ayam}
         array of days [365]=
         * */
+
+    public void setPlace(String place) {
+        Place = place;
+    }
+    /*
+    function betgam3 el host eli 3andhom properties fadya
+    attribute boolean empty for properties
+    */
+    public String getPlace() {
+        return Place;
+    }
+
+    public String getCapacity() {
+        return Capacity;
+    }
+
+    public double getPrice() {
+        return Price;
+    }
+
+    public double getArea() {
+        return Area;
+    }
+
+    public int getNumOfGuests() {
+        return NumOfGuests;
+    }
+
+    public void DisplayProp()
+    {
+        System.out.println(getPlace()+" "+getPrice()+" "+ getArea()+ " "+ +getNumOfGuests());
+    }
+}
+
+
+/*
+private boolean[] isBookedDay = new boolean[365];
+
     public int indexOfDay(int day,int month) {
          int months[] = {0,31, 28, 31, 31, 31, 30, 31, 31, 30, 31, 30, 31},ans = 0;
          // ans = no.of free days
@@ -65,43 +104,4 @@ public class Properties {
             isBookedDay[i] = false;
     }
 
-    public void setPlace(String place) {
-        Place = place;
-    }
-    /*
-    function betgam3 el host eli 3andhom properties fadya
-    attribute boolean empty for properties
-    */
-    public String getPlace() {
-        return Place;
-    }
-
-    public String getCapacity() {
-        return Capacity;
-    }
-
-    public double getPrice() {
-        return Price;
-    }
-
-    public double getArea() {
-        return Area;
-    }
-
-    public int getNumOfGuests() {
-        return NumOfGuests;
-    }
-
-    public String getStartDate() {
-        return StartDate;
-    }
-
-    public String getEndDate() {
-        return EndDate;
-    }
-
-    public void DisplayProp()
-    {
-        System.out.println(getPlace()+" "+getPrice()+" "+ getArea()+ " "+ +getNumOfGuests()+" "+getStartDate()+" "+getEndDate());
-    }
-}
+ */

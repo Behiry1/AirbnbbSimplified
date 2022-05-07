@@ -13,8 +13,8 @@ public class Hotel extends Properties
 
    public Hotel() {}
 
-   public Hotel(String capacity, String place, double price, double area, int numOfGuests, String startDate, String endDate, String meals, boolean seaView, boolean havePool) {
-      super(capacity, place, price, area, numOfGuests, startDate, endDate);
+   public Hotel(String capacity, String place, double price, double area, int numOfGuests, String meals, boolean seaView, boolean havePool,String f) {
+      super(capacity, place, price, area, numOfGuests,f);
       Meals = meals;
       SeaView = seaView;
       HavePool = havePool;

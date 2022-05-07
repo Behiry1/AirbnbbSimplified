@@ -46,7 +46,7 @@ public class FilesHandeler {
                     double d1 = Double.parseDouble(String.valueOf(Row[i+2]));
                     double d2 = Double.parseDouble(String.valueOf(Row[i+3]));
                     int i3 = Integer.parseInt(String.valueOf(Row[i+4]));
-                    properties.add(new Properties(Row[i],Row[i+1],d1,d2,i3,Row[i+5],Row[i+6]));
+         //           properties.add(new Properties(Row[i],Row[i+1],d1,d2,i3,Row[i+5],Row[i+6]));
                 }
                 hosts.get(counter).setProperties(properties);
                 counter=counter+1;
@@ -93,7 +93,7 @@ public class FilesHandeler {
                 double y2 = Double.parseDouble(String.valueOf(Row[3])); //area
 
 
-                properties.add(new Properties (Row[0],Row[1],y,y2,x,Row[5],Row[6]));
+         //       properties.add(new Properties (Row[0],Row[1],y,y2,x,Row[5],Row[6]));
             }
                myReader.close();
            } catch (FileNotFoundException e) {
@@ -155,9 +155,9 @@ public class FilesHandeler {
                     myWriter.write(',');
                     myWriter.write(Integer.toString(hosts.get(i).getProperties().get(j).getNumOfGuests()));
                     myWriter.write(',');
-                    myWriter.write(hosts.get(i).getProperties().get(j).getStartDate());
+             //       myWriter.write(hosts.get(i).getProperties().get(j).getStartDate());
                     myWriter.write(',');
-                    myWriter.write(hosts.get(i).getProperties().get(j).getEndDate());
+             //       myWriter.write(hosts.get(i).getProperties().get(j).getEndDate());
                     myWriter.write(',');
 
                 }
