@@ -207,7 +207,6 @@ public class FilesHandeler {
         }
     }
 
-
     public void WriteToPropertiesData(){}
     public void DisplayHostData() {
 
@@ -273,6 +272,23 @@ public class FilesHandeler {
             }
         }
     }
+
+    boolean SearchTravelersData(String email, String password) {
+        for(Traveler i : travelers) {
+            if(i.email.equals( email) && i.password.equals(password))
+                return true;
+        }
+        return false;
+    }
+    boolean SearchHostsData(String email, String password) {
+        for(Host i : hosts) {
+            if(i.email.equals( email) && i.password.equals(password))
+                return true;
+        }
+        return false;
+    }
+
+
 
 
 }

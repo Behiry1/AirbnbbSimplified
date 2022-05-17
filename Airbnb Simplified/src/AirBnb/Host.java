@@ -68,9 +68,6 @@ public class Host extends User {
         return avg;
     }
 
-    /*
-    function tamshi 3ala el properties
 
-    */
 
 }

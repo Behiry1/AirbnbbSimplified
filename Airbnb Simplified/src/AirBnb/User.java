@@ -12,15 +12,17 @@ public class User {
     int age;
     String gender;
 
+    FilesHandeler  f = new FilesHandeler();
+
     public User() {}
 
+    public User(FilesHandeler f) {
+        this.f = f;
+    }
 
     public User(String name) {
         this.name = name;
     }
-
-
-
 
     public User(String password, String email) {
         this.password = password;
@@ -49,7 +51,7 @@ public class User {
         String genderr;
         Scanner in = new Scanner(System.in);
         int choice;
-        FilesHandeler  f = new FilesHandeler();
+
         System.out.println("Would you like to sign up as : ");
         System.out.println("1. Traveler " + "2. Host");
         choice = in.nextInt();
@@ -147,7 +149,84 @@ public class User {
     }
 
     public void SignIn() {
+        Scanner in = new Scanner(System.in);
+        int couter=3;
+        int choice;
+        String email;
+        String pass;
+        System.out.println("Would you like to sign in as :");
+        System.out.println("1.traveler " + "2.hosts");
+        choice = in.nextInt();
+        if(choice == 1) {
+            while(couter!=0){
+                System.out.println("Please enter your email ");
+                email = in.next();
+                System.out.println("Please enter your password");
+                pass = in.next();
+                if(f.SearchTravelersData(email,pass)){
+                    System.out.println("Login succfully");
+                    return;
+                }
+                else{
+                    System.out.println("Invalid please try again");
+                    couter--;
+                }
+            }
 
+        } else if (choice == 2) {
+            while(couter!=0){
+                System.out.println("Please enter your email ");
+                email = in.next();
+                System.out.println("Please enter your password");
+                pass = in.next();
+                if(f.SearchHostsData(email,pass)){
+                    System.out.println("Login succfully");
+                    return;
+                }
+                else{
+                    System.out.println("Invalid please try again");
+                    couter--;
+                }
+            }
+
+        }else {
+            while (choice != 1 && choice != 2) {
+                System.out.println("Please enter a valid number");
+            }
+            if (choice == 1) {
+                while(couter!=0){
+                    System.out.println("Please enter your email ");
+                    email = in.next();
+                    System.out.println("Please enter your password");
+                    pass = in.next();
+                    if(f.SearchTravelersData(email,pass)){
+                        System.out.println("Login succfully");
+                        return;
+                    }
+                    else{
+                        System.out.println("Invalid please try again");
+                        couter--;
+                    }
+                }
+            } else if (choice == 2) {
+                while(couter!=0){
+                    System.out.println("Please enter your email ");
+                    email = in.next();
+                    System.out.println("Please enter your password");
+                    pass = in.next();
+                    if(f.SearchHostsData(email,pass)){
+                        System.out.println("Login succfully");
+                        return;
+                    }
+                    else{
+                        System.out.println("Invalid please try again");
+                        couter--;
+                    }
+                }
+
+            }
+
+        }
     }
 
     public String getName() {
@@ -212,5 +291,9 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public FilesHandeler getF() {
+        return f;
     }
 }
