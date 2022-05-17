@@ -12,8 +12,8 @@ public class FilesHandeler {
     private ArrayList<Host> hosts = new ArrayList<Host>();
     private ArrayList<Traveler> travelers = new ArrayList<Traveler>();
     private ArrayList<Properties> properties = new ArrayList<Properties>();
-    private String HostPath = "E:/AirbnbbSimplified-master/Airbnb Simplified/src/AirBnb/Host_File.csv";
-    private String TraverlerPath = "E:/AirbnbbSimplified-master/Airbnb Simplified/src/AirBnb/Traveller_file.csv";
+    private String HostPath = "D:/Project/DataStrucures/Airbnb/Airbnb Simplified/src/AirBnb/Host_File.csv";
+    private String TraverlerPath = "D:/Project/DataStrucures/Airbnb/Airbnb Simplified/src/AirBnb/Traveller_file.csv";
     private String PropertiesPath = "E:/AirbnbbSimplified-master/Airbnb Simplified/src/AirBnb/Properties_files .csv";
     int counter=0;
     public ArrayList<Host> getHosts() {
@@ -106,13 +106,11 @@ public class FilesHandeler {
 
     public void AddHost(String name, String phoneNumber, String password, String email, String nation, String id, int age, String gender){
         hosts.add(new Host(name,phoneNumber,password,email,nation,id,age,gender));
-
     }
 
 
     public void AddTraveler(String name, String phoneNumber, String password, String email, String nation, String id, int age, String gender){
         travelers.add(new Traveler(name,phoneNumber,password,email,nation,id,age,gender));
-
     }
 
 
