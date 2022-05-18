@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin extends User {
+    String email;
+    String password;
  /*
- 1- sign up  and in (unqiue)
- 2- access all data (hosts and traverlers)
- 3- arraylist of hosts and travelers
- 4- function edit any data
+ 1- sign up  and in (unique) --> les
+ 2- access all data (hosts and travelers) --> done
+ 3- arraylist of hosts and travelers --> done
+ 4- function edit any data --> done
   */
-;
+
 
     FilesHandeler F = new FilesHandeler();
     public Admin() {

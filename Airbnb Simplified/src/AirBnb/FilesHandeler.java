@@ -14,7 +14,7 @@ public class FilesHandeler {
     private ArrayList<Properties> properties = new ArrayList<Properties>();
     private String HostPath = "D:/Project/DataStrucures/Airbnb/Airbnb Simplified/src/AirBnb/Host_File.csv";
     private String TraverlerPath = "D:/Project/DataStrucures/Airbnb/Airbnb Simplified/src/AirBnb/Traveller_file.csv";
-    private String PropertiesPath = "E:/AirbnbbSimplified-master/Airbnb Simplified/src/AirBnb/Properties_files .csv";
+
     int counter=0;
     public ArrayList<Host> getHosts() {
         return hosts;
@@ -46,7 +46,7 @@ public class FilesHandeler {
                     double d1 = Double.parseDouble(String.valueOf(Row[i+2]));
                     double d2 = Double.parseDouble(String.valueOf(Row[i+3]));
                     int i3 = Integer.parseInt(String.valueOf(Row[i+4]));
-         //           properties.add(new Properties(Row[i],Row[i+1],d1,d2,i3,Row[i+5],Row[i+6]));
+         //          properties.add(new Properties(Row[i],Row[i+1],d1,d2,i3,Row[i+5],Row[i+6]));
                 }
                 hosts.get(counter).setProperties(properties);
                 counter=counter+1;
@@ -80,30 +80,6 @@ public class FilesHandeler {
     }
 
 
-    public void ReadPropertiesData() {
-
-        try {
-            File PP = new File(PropertiesPath);
-            Scanner myReader = new Scanner(PP);
-            while (myReader.hasNextLine()) {
-                String Data = myReader.nextLine();
-                String [] Row = Data.split(",");
-                int x = Integer.parseInt(String.valueOf(Row[4])); //numofguest
-                double y = Double.parseDouble(String.valueOf(Row[2])); //price
-                double y2 = Double.parseDouble(String.valueOf(Row[3])); //area
-
-
-         //       properties.add(new Properties (Row[0],Row[1],y,y2,x,Row[5],Row[6]));
-            }
-               myReader.close();
-           } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-    }
-
-
     public void AddHost(String name, String phoneNumber, String password, String email, String nation, String id, int age, String gender){
         hosts.add(new Host(name,phoneNumber,password,email,nation,id,age,gender));
     }
@@ -112,9 +88,6 @@ public class FilesHandeler {
     public void AddTraveler(String name, String phoneNumber, String password, String email, String nation, String id, int age, String gender){
         travelers.add(new Traveler(name,phoneNumber,password,email,nation,id,age,gender));
     }
-
-
-
     public void WriteToHostData(){
         try
         {
@@ -229,6 +202,7 @@ public class FilesHandeler {
             e.printStackTrace();
         }
     }
+
     public void DisplayTravelersData() {
 
         try {
@@ -286,6 +260,17 @@ public class FilesHandeler {
                 return true;
         }
         return false;
+    }
+
+    boolean CheackAdmin(String email,String pass){
+        if(email.equals("admin") && pass.equals("Admin") )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 

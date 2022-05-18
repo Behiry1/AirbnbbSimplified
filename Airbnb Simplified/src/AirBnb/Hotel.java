@@ -40,9 +40,6 @@ public class Hotel extends Properties
       return avg;
    }
 
-   /*
-   * remember to add function calulate
-   * num of free days in Hotel
-   * */
+
 
 }

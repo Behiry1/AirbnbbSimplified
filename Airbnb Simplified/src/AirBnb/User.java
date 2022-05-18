@@ -1,5 +1,6 @@
 package AirBnb;
 
+import java.awt.*;
 import java.util.Scanner;
 
 public class User {
@@ -11,7 +12,6 @@ public class User {
     String id;
     int age;
     String gender;
-
     FilesHandeler  f = new FilesHandeler();
 
     public User() {}
@@ -155,10 +155,10 @@ public class User {
         String email;
         String pass;
         System.out.println("Would you like to sign in as :");
-        System.out.println("1.traveler " + "2.hosts");
+        System.out.println("1.traveler " + "2.hosts" + " 3.Admin");
         choice = in.nextInt();
         if(choice == 1) {
-            while(couter!=0){
+            while(couter != 0){
                 System.out.println("Please enter your email ");
                 email = in.next();
                 System.out.println("Please enter your password");
@@ -173,8 +173,9 @@ public class User {
                 }
             }
 
-        } else if (choice == 2) {
-            while(couter!=0){
+        }
+        else if (choice == 2) {
+            while(couter != 0){
                 System.out.println("Please enter your email ");
                 email = in.next();
                 System.out.println("Please enter your password");
@@ -183,15 +184,32 @@ public class User {
                     System.out.println("Login succfully");
                     return;
                 }
+
                 else{
                     System.out.println("Invalid please try again");
                     couter--;
                 }
             }
-
-        }else {
-            while (choice != 1 && choice != 2) {
+        }
+        else if(choice == 3){
+                while(couter != 0){
+                    System.out.println("Please enter your email ");
+                    email = in.next();
+                    System.out.println("Please enter your password");
+                    pass = in.next();
+                    if(f.CheackAdmin(email,pass)){
+                        System.out.println("Login succfully");
+                        return;
+                    }else{
+                        System.out.println("Invalid please try again");
+                        couter--;
+                    }
+                }
+            }
+        else {
+            while (choice != 1 && choice != 2 && choice !=3) {
                 System.out.println("Please enter a valid number");
+                choice = in.nextInt();
             }
             if (choice == 1) {
                 while(couter!=0){
@@ -224,7 +242,24 @@ public class User {
                     }
                 }
 
+            }else if (choice == 3) {
+                while(couter!=0){
+                    System.out.println("Please enter your email ");
+                    email = in.next();
+                    System.out.println("Please enter your password");
+                    pass = in.next();
+                    if(email == "admin" && pass == "admin"){
+                        System.out.println("Login succfully");
+                        return;
+                    }
+                    else{
+                        System.out.println("Invalid please try again");
+                        couter--;
+                    }
+                }
+
             }
+
 
         }
     }
