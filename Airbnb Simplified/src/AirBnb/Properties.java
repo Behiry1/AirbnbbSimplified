@@ -8,11 +8,12 @@ public class Properties {
     private double Price;
     private double Area;
     private int NumOfGuests;
+
     public LinkedList theDays;
 
     public Properties() {}
 
-    public Properties(String capacity, String place, double price, double area, int numOfGuests, String BitString) {
+    public Properties(String capacity, String place, double price, double area, int numOfGuests, String BitString, int curYearIndicator, int indicator) {
         Capacity = capacity;
         Place = place;
         Price = price;
@@ -21,12 +22,9 @@ public class Properties {
         if(BitString.length() < 365)
             theDays = new LinkedList();
         else
-            theDays = new LinkedList(BitString);
+            theDays = new LinkedList(BitString, indicator, curYearIndicator);
     }
-    /*
-        arrys of months [12]={kol months fe ada el ayam}
-        array of days [365]=
-        * */
+
 
     public void setPlace(String place) {
         Place = place;
@@ -58,6 +56,10 @@ public class Properties {
     public void DisplayProp()
     {
         System.out.println(getPlace()+" "+getPrice()+" "+ getArea()+ " "+ +getNumOfGuests());
+    }
+
+    public LinkedList getTheDays() {
+        return theDays;
     }
 }
 

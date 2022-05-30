@@ -31,13 +31,17 @@ public class LinkedList
     // This constructor is for initializing the linked list with 365 days all unbooked for further use
     public LinkedList()
     {
-        for(int i=1;i<=size;i++)
+        int i;
+        for( i=1;i<=365;i++)
             this.add(false, i);
     }
 
     // This Constructor is for reading from files as the files have the linked list stored as a binary bit string
-    public LinkedList(String bitString)
+    public LinkedList(String bitString, int indicator, int curYearIndicator)
     {
+        this.curYearIndicator = curYearIndicator;
+        this.indicator = indicator;
+
         int ind = 1;
         for(char i : bitString.toCharArray())
         {
@@ -51,18 +55,19 @@ public class LinkedList
     {
         StringBuilder bitString = new StringBuilder();
         Node cur = head;
-        for(int i=1;i<=365;i++)
+        for(int i = 1; i <= 365; i++)
         {
             if(cur.value)
-                bitString.append("1");
+                bitString.append('1');
             else
-                bitString.append("0");
+                bitString.append('0');
+            cur = cur.next;
         }
 
         return bitString.toString();
     }
 
-    public void add(boolean value, int index)
+    private void add(boolean value, int index)
     {
         Node newNode = new Node(value, index);
 
@@ -205,6 +210,15 @@ public class LinkedList
         }
     }
 
+    public int getCurYearIndicator()
+    {
+        return curYearIndicator;
+    }
+
+    public int getIndicator()
+    {
+        return indicator;
+    }
 
     public int getSize() {
         return size;

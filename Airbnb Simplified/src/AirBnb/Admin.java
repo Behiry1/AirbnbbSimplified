@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Admin extends User {
     String email;
     String password;
+    Scanner in = new Scanner(System.in);
  /*
  1- sign up  and in (unique) --> les
  2- access all data (hosts and travelers) --> done
@@ -14,33 +15,61 @@ public class Admin extends User {
   */
 
 
-    FilesHandeler F = new FilesHandeler();
-    public Admin() {
+    public Admin() {}
 
-    }
 
-    public Admin(FilesHandeler F) {
-      this.F = F;
-    }
     private Admin(String password, String email) {
         super("Admin", "Admin");
     }
 
+    public void AdminLoggedIn()
+    {
+        int choice;
+        while (true)
+        {
+            System.out.print("Enter a number for the following services:\n1-Show host data 2-Show traveler data 3-Access host 4-Access traveler 5-Edit host data");
+            System.out.println("6-Edit traveler data 0-LOG OUT");
+
+            choice = in.nextInt();
+            choice = Main.validateInput(choice, 0, 6);
+
+            if(choice == 1)
+                ShowHostData();
+            else if(choice == 2)
+                ShowTravelerData();
+            else if(choice == 3)
+                AccessHost();
+            else if(choice == 4)
+                AccessTraverler();
+            else if(choice == 5)
+                EditHostData();
+            else if(choice == 6)
+                EditTravelerData();
+            else
+                return;
+        }
+    }
+
+
     public void ShowHostData() {
-        FilesHandeler F = new FilesHandeler();
-        F.DisplayHostData();
+
+        Main.f.DisplayHostData();
 
     }
 
     public void ShowTravelerData() {
 
-        F.DisplayTravelersData();
+        Main.f.DisplayTravelersData();
 
     }
 
-    public void AccessHost (String id) {
+    public void AccessHost ()
+    {
+        System.out.println("Enter the ID of the desired host");
+        String id = in.next();
+
         int property = 1;
-        for (Host i :  F.getHosts()) {
+        for (Host i :  Main.f.getHosts()) {
             if(i.id.equals(id)) {
                 System.out.println(i.id + " " + i.name + " " + i.phoneNumber + " " + i.email + " " + i.nation + " "  + i.gender );
                 for (Properties j : i.getProperties()) {
@@ -54,9 +83,12 @@ public class Admin extends User {
 
     }
 
-    public void AccessTraverler (String id) {
+    public void AccessTraverler ()
+    {
+        System.out.println("Enter the ID of the desired traveler");
+        String id = in.next();
 
-        for (Traveler i :  F.getTravelers()) {
+        for (Traveler i :  Main.f.getTravelers()) {
             if(i.id.equals(id)) {
                 System.out.println(i.id + " " + i.name + " " + i.phoneNumber + " " + i.email + " " + i.nation + " "  + i.gender );
                 break;
@@ -66,9 +98,12 @@ public class Admin extends User {
 
     }
 
-    public void  EditHostData(String id) {
-      F.ReadHostData();
-      Scanner in  = new Scanner(System.in);
+    public void  EditHostData()
+    {
+        System.out.println("Enter the ID of the desired host");
+        String id = in.next();
+
+        Main.f.ReadHostData();
       /*
       tartibb el cout lel host we el traverlers
       * 1.id
@@ -80,30 +115,9 @@ public class Admin extends User {
       * 7.gender
       * 8.phone number
       * */
-      System.out.println();
-      String NeedToEdit = in.next(),Edit = in.next();
-        for (Host i : F.getHosts()) {
-            if(i.id.equals(id))
-            {
-             if(NeedToEdit.equals("Name")) i.name = Edit;
-             if(NeedToEdit.equals("Email")) i.email = Edit;
-             if(NeedToEdit.equals("Password")) i.password = Edit;
-             if(NeedToEdit.equals("Nation")) i.nation = Edit;
-             if(NeedToEdit.equals("Gender")) i.nation = Edit;
-             if(NeedToEdit.equals("Age")) i.age = Integer.parseInt(Edit);
-             if(NeedToEdit.equals("Phone number")) i.phoneNumber = Edit;
-
-            }
-        }
-        F.WriteToHostData();
-    }
-
-    public void  EditTravelerData(String id) {
-        F.ReadTraverlerData();
-        Scanner in = new Scanner(System.in);
         System.out.println();
         String NeedToEdit = in.next(),Edit = in.next();
-        for (Traveler i : F.getTravelers()) {
+        for (Host i : Main.f.getHosts()) {
             if(i.id.equals(id))
             {
                 if(NeedToEdit.equals("Name")) i.name = Edit;
@@ -116,6 +130,30 @@ public class Admin extends User {
 
             }
         }
-      F.WriteToTraverlersData();
+        Main.f.WriteToHostData();
+    }
+
+    public void  EditTravelerData()
+    {
+        System.out.println("Enter the ID of the desired traveler");
+        String id = in.next();
+
+        Main.f.ReadTraverlerData();
+        System.out.println();
+        String NeedToEdit = in.next(),Edit = in.next();
+        for (Traveler i : Main.f.getTravelers()) {
+            if(i.id.equals(id))
+            {
+                if(NeedToEdit.equals("Name")) i.name = Edit;
+                if(NeedToEdit.equals("Email")) i.email = Edit;
+                if(NeedToEdit.equals("Password")) i.password = Edit;
+                if(NeedToEdit.equals("Nation")) i.nation = Edit;
+                if(NeedToEdit.equals("Gender")) i.nation = Edit;
+                if(NeedToEdit.equals("Age")) i.age = Integer.parseInt(Edit);
+                if(NeedToEdit.equals("Phone number")) i.phoneNumber = Edit;
+
+            }
+        }
+        Main.f.WriteToTraverlersData();
     }
 }

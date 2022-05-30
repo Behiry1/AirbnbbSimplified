@@ -6,13 +6,15 @@ public class Apartment extends Properties
 {
     private int NumOfRooms;
     private int Floor;
-    private boolean Terasse; // balakona
+    private boolean Terasse;
     private ArrayList<Rate> ApartmentRate =new ArrayList<Rate>();
+
+    private LinkedList days = new LinkedList();
 
     public Apartment() {}
 
-    public Apartment(String capacity, String place, double price, double area, int numOfGuests, int numOfRooms, int floor, boolean terasse,String f) {
-        super(capacity, place, price, area, numOfGuests,f) ;
+    public Apartment(String capacity, String place, double price, double area, int numOfGuests, int numOfRooms, int floor, boolean terasse,String Bitstring,int indicator,int currIndicator) {
+        super(capacity, place, price, area, numOfGuests,Bitstring,indicator, currIndicator) ;
         NumOfRooms = numOfRooms;
         Floor = floor;
         Terasse = terasse;
@@ -27,9 +29,7 @@ public class Apartment extends Properties
         double sum = 0.0,avg,NumOfRates;
 
         for (Rate curRate :  ApartmentRate)
-        {
             sum += curRate.numOfStars;
-        }
 
         NumOfRates = ApartmentRate.size();
 
@@ -38,8 +38,12 @@ public class Apartment extends Properties
         return avg;
     }
 
-    /*
-     * remember to add function calculate
-     * num of free days in sha2a
-     * */
+
+
+
+
 }
+
+
+
+

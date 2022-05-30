@@ -1,6 +1,5 @@
 package AirBnb;
 
-import java.awt.*;
 import java.util.Scanner;
 
 public class User {
@@ -12,13 +11,9 @@ public class User {
     String id;
     int age;
     String gender;
-    FilesHandeler  f = new FilesHandeler();
 
     public User() {}
 
-    public User(FilesHandeler f) {
-        this.f = f;
-    }
 
     public User(String name) {
         this.name = name;
@@ -40,7 +35,9 @@ public class User {
         this.gender = gender;
     }
 
-    public void SignUp(){
+    //
+    // made static by zone to ease up process of signing in and up and to be more logical
+    public static void SignUp(){
         String namee;
         String phoneNumberr;
         String passwordd;
@@ -56,115 +53,63 @@ public class User {
         System.out.println("1. Traveler " + "2. Host");
         choice = in.nextInt();
 
-        if(choice == 1){
-            System.out.println("Please enter your name ");
-            namee = in.next();
-            System.out.println("Please enter your phone number  ");
-            phoneNumberr = in.next();
-            System.out.println("Please enter your email ");
-            emaill = in.next();
-            System.out.println("Please enter your password ");
-            passwordd = in.next();
-            System.out.println("Please enter your nation ");
-            nationn = in.next();
-            System.out.println("Please enter your id ");
-            idd = in.next();
-            System.out.println("Please enter your age ");
-            agee = in.nextInt();
-            System.out.println("Please enter your gender (male or female) ");
-            genderr = in.next();
-
-            f.AddTraveler(namee,phoneNumberr,passwordd,emaill,nationn,idd,agee,genderr);
-        }
-        else if(choice == 2){
-            System.out.println("Please enter your name ");
-            namee = in.next();
-            System.out.println("Please enter your phone number  ");
-            phoneNumberr = in.next();
-            System.out.println("Please enter your email ");
-            emaill = in.next();
-            System.out.println("Please enter your password ");
-            passwordd = in.next();
-            System.out.println("Please enter your nation ");
-            nationn = in.next();
-            System.out.println("Please enter your id ");
-            idd = in.next();
-            System.out.println("Please enter your age ");
-            agee = in.nextInt();
-            System.out.println("Please enter your gender (male or female) ");
-            genderr = in.next();
-
-            f.AddHost(namee,phoneNumberr,passwordd,emaill,nationn,idd,agee,genderr);
-
-        }
-        else{
-
-            while(choice != 1 && choice != 2)
-            {
-                System.out.println("Please enter a valid number");
-            }
-            if(choice == 1){
-                System.out.println("Please enter your name ");
-                namee = in.next();
-                System.out.println("Please enter your phone number  ");
-                phoneNumberr = in.next();
-                System.out.println("Please enter your email ");
-                emaill = in.next();
-                System.out.println("Please enter your password ");
-                passwordd = in.next();
-                System.out.println("Please enter your nation ");
-                nationn = in.next();
-                System.out.println("Please enter your id ");
-                idd = in.next();
-                System.out.println("Please enter your age ");
-                agee = in.nextInt();
-                System.out.println("Please enter your gender (male or female) ");
-                genderr = in.next();
-
-                f.AddTraveler(namee,phoneNumberr,passwordd,emaill,nationn,idd,agee,genderr);
-            }
-            else if(choice == 2){
-                System.out.println("Please enter your name ");
-                namee = in.next();
-                System.out.println("Please enter your phone number  ");
-                phoneNumberr = in.next();
-                System.out.println("Please enter your email ");
-                emaill = in.next();
-                System.out.println("Please enter your password ");
-                passwordd = in.next();
-                System.out.println("Please enter your nation ");
-                nationn = in.next();
-                System.out.println("Please enter your id ");
-                idd = in.next();
-                System.out.println("Please enter your age ");
-                agee = in.nextInt();
-                System.out.println("Please enter your gender (male or female) ");
-                genderr = in.next();
-
-                f.AddHost(namee,phoneNumberr,passwordd,emaill,nationn,idd,agee,genderr);
-
-            }
+        while(choice != 1 && choice != 2)
+        {
+            System.out.println("Please enter a valid number");
+            choice = in.nextInt();
         }
 
+        System.out.println("Please enter your name ");
+        namee = in.next();
+        System.out.println("Please enter your phone number  ");
+        phoneNumberr = in.next();
+        System.out.println("Please enter your email ");
+        emaill = in.next();
+        System.out.println("Please enter your password ");
+        passwordd = in.next();
+        System.out.println("Please enter your nation ");
+        nationn = in.next();
+        System.out.println("Please enter your id ");
+        idd = in.next();
+        System.out.println("Please enter your age ");
+        agee = in.nextInt();
+        System.out.println("Please enter your gender (male or female) ");
+        genderr = in.next();
+        if(choice == 1)
+            Main.f.AddTraveler(namee,phoneNumberr,passwordd,emaill,nationn,idd,agee,genderr);
+        else
+            Main.f.AddHost(namee,phoneNumberr,passwordd,emaill,nationn,idd,agee,genderr);
     }
 
-    public void SignIn() {
+    //
+    // made static by zone
+    public static void SignIn() {
         Scanner in = new Scanner(System.in);
         int couter=3;
         int choice;
         String email;
         String pass;
         System.out.println("Would you like to sign in as :");
-        System.out.println("1.traveler " + "2.hosts" + " 3.Admin");
+        System.out.println("1.traveler 2.hosts 3.Admin");
         choice = in.nextInt();
+
+        while (!(choice >=1 && choice <=3))
+        {
+                System.out.println("Please enter a valid number");
+                choice = in.nextInt();
+        }
+
         if(choice == 1) {
             while(couter != 0){
                 System.out.println("Please enter your email ");
                 email = in.next();
                 System.out.println("Please enter your password");
                 pass = in.next();
-                if(f.SearchTravelersData(email,pass)){
-                    System.out.println("Login succfully");
+
+                Traveler t = Main.f.SearchTravelersData(email,pass);
+                if(t!=null){
+                    System.out.println("Login successfully");
+                    t.TravelerLoggedIn();
                     return;
                 }
                 else{
@@ -172,7 +117,6 @@ public class User {
                     couter--;
                 }
             }
-
         }
         else if (choice == 2) {
             while(couter != 0){
@@ -180,8 +124,11 @@ public class User {
                 email = in.next();
                 System.out.println("Please enter your password");
                 pass = in.next();
-                if(f.SearchHostsData(email,pass)){
-                    System.out.println("Login succfully");
+
+                Host h = Main.f.SearchHostsData(email,pass);
+                if(h!=null){
+                    System.out.println("Login successfully");
+                    h.HostLoggedIn();
                     return;
                 }
 
@@ -191,77 +138,28 @@ public class User {
                 }
             }
         }
-        else if(choice == 3){
-                while(couter != 0){
-                    System.out.println("Please enter your email ");
-                    email = in.next();
-                    System.out.println("Please enter your password");
-                    pass = in.next();
-                    if(f.CheackAdmin(email,pass)){
-                        System.out.println("Login succfully");
-                        return;
-                    }else{
-                        System.out.println("Invalid please try again");
-                        couter--;
-                    }
+        else
+        {
+            while(couter != 0){
+                System.out.println("Please enter your email ");
+                email = in.next();
+                System.out.println("Please enter your password");
+                pass = in.next();
+                if(Main.f.CheckAdmin(email,pass)){
+                    System.out.println("Login successfully");
+
+                    Admin a = new Admin();
+                    a.AdminLoggedIn();
+                    return;
+                }
+                else
+                {
+                    System.out.println("Invalid please try again");
+                    couter--;
                 }
             }
-        else {
-            while (choice != 1 && choice != 2 && choice !=3) {
-                System.out.println("Please enter a valid number");
-                choice = in.nextInt();
-            }
-            if (choice == 1) {
-                while(couter!=0){
-                    System.out.println("Please enter your email ");
-                    email = in.next();
-                    System.out.println("Please enter your password");
-                    pass = in.next();
-                    if(f.SearchTravelersData(email,pass)){
-                        System.out.println("Login succfully");
-                        return;
-                    }
-                    else{
-                        System.out.println("Invalid please try again");
-                        couter--;
-                    }
-                }
-            } else if (choice == 2) {
-                while(couter!=0){
-                    System.out.println("Please enter your email ");
-                    email = in.next();
-                    System.out.println("Please enter your password");
-                    pass = in.next();
-                    if(f.SearchHostsData(email,pass)){
-                        System.out.println("Login succfully");
-                        return;
-                    }
-                    else{
-                        System.out.println("Invalid please try again");
-                        couter--;
-                    }
-                }
-
-            }else if (choice == 3) {
-                while(couter!=0){
-                    System.out.println("Please enter your email ");
-                    email = in.next();
-                    System.out.println("Please enter your password");
-                    pass = in.next();
-                    if(email == "admin" && pass == "admin"){
-                        System.out.println("Login succfully");
-                        return;
-                    }
-                    else{
-                        System.out.println("Invalid please try again");
-                        couter--;
-                    }
-                }
-
-            }
-
-
         }
+
     }
 
     public String getName() {
@@ -329,6 +227,6 @@ public class User {
     }
 
     public FilesHandeler getF() {
-        return f;
+        return Main.f;
     }
 }

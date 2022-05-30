@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;  // Import this class to handle errors
 
 public class Host extends User {
 
+    Scanner in = new Scanner(System.in);
     private ArrayList<Rate> History=new ArrayList<Rate>();
     private ArrayList<Properties> properties=new ArrayList<Properties>();
     // down cast
@@ -18,11 +19,39 @@ public class Host extends User {
         super(name, phoneNumber, password, email, nation, id, age, gender);
     }
 
+    public void HostLoggedIn()
+    {
+        int choice;
+        while (true)
+        {
+            System.out.println("Enter a number for the following services: %n1-Add Property 2-Add rate 3-Calculate Rate 0-LOG OUT");
+            choice = in.nextInt();
+
+            Main.validateInput(choice, 0, 3);
+
+            if(choice==1)
+                AddProperty();
+            else if(choice==2)
+                AddRate();
+            else if(choice==3)
+                calRate();
+            else
+                return;
+        }
+    }
+
     public ArrayList<Properties> getProperties() {
         return properties;
     }
 
-    public void AddRate(Rate r) {
+    public void AddRate()
+    {
+        System.out.println("Enter your comment and your rate from 0 to 5");
+
+        String comment = in.next();
+        int stars = in.nextInt();
+
+        Rate r = new Rate(comment, stars);
         History.add(r);
     }
 
@@ -31,28 +60,38 @@ public class Host extends User {
     }
 
 
-    public void AddProperty() {
-        // el main eli behiry mo3tard 3aleiha
-
-        System.out.println("enter your chiose");
-        Scanner IN = new Scanner(System.in);
-        int choice = IN.nextInt();
+    public void AddProperty()
+    {
+        System.out.println("Enter 1 for adding a hotel or 2 to add an apartment");
+        int choice = in.nextInt();
 
 
 
-        if(choice == 1) {
-            System.out.println(" enter attribute ");
-            Hotel cur = new Hotel(IN.next(),IN.next(),IN.nextDouble(),IN.nextDouble(),IN.nextInt(),IN.next(),IN.nextBoolean(),IN.nextBoolean(), IN.next());
+        choice = Main.validateInput(choice, 1,2);
+
+        System.out.println("Enter attribute ");
+        if(choice == 1)
+        {
+            Hotel cur = new Hotel(in.next(),in.next(),in.nextDouble(),in.nextDouble(),in.nextInt(),in.next(),in.nextBoolean(),in.nextBoolean(), in.next(),in.nextInt(), in.nextInt());
             properties.add(cur);
+            if(!Main.f.CitySearch.containsKey(cur.getPlace()))
+                Main.f.CitySearch.put(cur.getPlace(), new ArrayList<Properties>());
+            Main.f.CitySearch.get(cur.getPlace()).add(cur);
         }
-        else {
-            System.out.println("entr attribute ");
-            Apartment cur = new Apartment(IN.next(),IN.next(),IN.nextDouble(),IN.nextDouble(),IN.nextInt(),IN.nextInt(),IN.nextInt(),IN.nextBoolean(),IN.next());
+        else
+        {
+            Apartment cur = new Apartment(in.next(),in.next(),in.nextDouble(),in.nextDouble(),in.nextInt(),in.nextInt(),in.nextInt(),in.nextBoolean(),in.next(),in.nextInt(), in.nextInt());
             properties.add(cur);
+
+            if(!Main.f.CitySearch.containsKey(cur.getPlace()))
+                Main.f.CitySearch.put(cur.getPlace(), new ArrayList<Properties>());
+            Main.f.CitySearch.get(cur.getPlace()).add(cur);
         }
     }
 
-    public double calRate() {
+    // calculates rate given to host using average
+    // originally double changed to void by zone
+    public void calRate() {
 
         double sum = 0.0,avg,NumOfRates;
 
@@ -65,7 +104,7 @@ public class Host extends User {
 
         avg = (sum / NumOfRates);
 
-        return avg;
+        System.out.println("The rate is " + avg);
     }
 
 
