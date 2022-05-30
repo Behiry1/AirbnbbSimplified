@@ -29,7 +29,7 @@ public class Traveler extends User {
 
             if(choice == 1)
                 SearchCity();
-            else
+
                 return;
         }
     }
@@ -39,8 +39,6 @@ public class Traveler extends User {
         System.out.println("Enter the city name you want to look up");
         String city = in.next();
 
-
-
         if(!Main.f.CitySearch.containsKey(city))
         {
             System.out.println("No Hotels in desired area");
@@ -49,19 +47,19 @@ public class Traveler extends User {
 
 
         ArrayList<Properties> tmp = Main.f.CitySearch.get(city);
-        for(int i=0;i<tmp.size();i++)
+        for(int i = 0;i < tmp.size();i++)
         {
-            System.out.print(i+1 + " : ");
+            System.out.print(i + 1 + " : ");
             tmp.get(i).DisplayProp();
         }
 
         System.out.println("Enter the number desired property or 0 to not choose");
         int choice = in.nextInt();
 
-        if(choice==0)
+        if(choice == 0 )
             return;
 
-        tmp.get(choice-1).theDays.book();
+        tmp.get(choice - 1).theDays.book();
     }
 
 

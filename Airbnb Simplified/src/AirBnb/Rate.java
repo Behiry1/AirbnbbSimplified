@@ -4,8 +4,10 @@ public class Rate {
     String comment;
     int numOfStars;
 
-    public Rate(String comment, int numOfStars) {
-        if (numOfStars < 0) {
+    public Rate(String comment, int numOfStars)
+    {
+        if (numOfStars < 0)
+        {
             this.numOfStars = 0;
             this.comment = comment;
 
@@ -16,9 +18,7 @@ public class Rate {
         } else {
             this.comment = comment;
             this.numOfStars = numOfStars;
-
         }
-
 
     }
 }

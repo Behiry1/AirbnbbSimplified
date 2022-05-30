@@ -29,9 +29,8 @@ public class Hotel extends Properties
       double sum = 0.0,avg,NumOfRates;
 
       for (Rate curRate :  HotelRate)
-      {
-         sum += curRate.numOfStars;
-      }
+           sum += curRate.numOfStars;
+
 
       NumOfRates = HotelRate.size();
 
@@ -39,7 +38,5 @@ public class Hotel extends Properties
 
       return avg;
    }
-
-
 
 }

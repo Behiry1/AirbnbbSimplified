@@ -4,22 +4,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin extends User {
-    String email;
-    String password;
+    String email ;
+    String password ;
     Scanner in = new Scanner(System.in);
- /*
- 1- sign up  and in (unique) --> les
- 2- access all data (hosts and travelers) --> done
- 3- arraylist of hosts and travelers --> done
- 4- function edit any data --> done
-  */
+
 
 
     public Admin() {}
 
 
     private Admin(String password, String email) {
-        super("Admin", "Admin");
+        super("Admin", "admin");
     }
 
     public void AdminLoggedIn()
@@ -45,7 +40,7 @@ public class Admin extends User {
                 EditHostData();
             else if(choice == 6)
                 EditTravelerData();
-            else
+
                 return;
         }
     }

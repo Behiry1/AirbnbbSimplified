@@ -20,8 +20,8 @@ class Node
 // This is a boolean circular-linked list to represent the days of the year for booking
 public class LinkedList
 {
-    Node head=null;
-    Node tail=null;
+    Node head = null;
+    Node tail = null;
     final int size = 365;
     LocalDateTime now = LocalDateTime.now();
     int curYearIndicator = now.getYear();// to avoid the turning from year to year problems and handling it
@@ -31,8 +31,8 @@ public class LinkedList
     // This constructor is for initializing the linked list with 365 days all unbooked for further use
     public LinkedList()
     {
-        int i;
-        for( i=1;i<=365;i++)
+
+        for( int i = 1; i <= 365 ; i++)
             this.add(false, i);
     }
 
@@ -71,7 +71,7 @@ public class LinkedList
     {
         Node newNode = new Node(value, index);
 
-        if(head==null)
+        if(head == null)
         {
             head = newNode;
             tail = newNode;
@@ -95,6 +95,7 @@ public class LinkedList
             index += months[i];
 
         index += day;
+
         return index;
     }
 
@@ -107,7 +108,7 @@ public class LinkedList
 
         while(cur.index != secondIndex)
         {
-            if(cur.value || cur.index==indicator)
+            if(cur.value || cur.index == indicator)
                 return true;
 
             cur = cur.next;
@@ -118,7 +119,7 @@ public class LinkedList
     // Checks the validity of a given date
     boolean validDate(int day, int month, int year)
     {
-        return (year == now.getYear() || year == now.getYear()+1) && (day <= 31 && day >= 1) && (month <= 12 && month >= 1);
+        return (year == now.getYear() || year == now.getYear() + 1) && (day <= 31 && day >= 1) && (month <= 12 && month >= 1);
     }
 
     // marks a specified range as booked by marking the nodes in specified range with true value
@@ -144,7 +145,7 @@ public class LinkedList
         int firstDay = input.nextInt(), firstMonth = input.nextInt(), firstYear = input.nextInt();
         int secondDay = input.nextInt(), secondMonth = input.nextInt(), secondYear = input.nextInt();
 
-        if( (!( validDate(firstDay, firstMonth, firstYear) && validDate(secondDay, secondMonth, secondYear))) || !(secondYear-firstYear<=1))
+        if( (!( validDate(firstDay, firstMonth, firstYear) && validDate(secondDay, secondMonth, secondYear))) || !(secondYear - firstYear <= 1))
         {
             System.out.println("Not a valid date ");
             return;
@@ -157,9 +158,9 @@ public class LinkedList
         Node cur = head;
         while(cur.next.index < curDayIndex || curYearIndicator < now.getYear())
         {
-            if(cur.index==indicator)
+            if(cur.index == indicator)
             {
-                cur.value=false;
+                cur.value = false;
                 indicator++;
             }
 
@@ -190,7 +191,7 @@ public class LinkedList
         int firstDay = input.nextInt(), firstMonth = input.nextInt(), firstYear = input.nextInt();
         int secondDay = input.nextInt(), secondMonth = input.nextInt(), secondYear = input.nextInt();
 
-        if( (!( validDate(firstDay, firstMonth, firstYear) && validDate(secondDay, secondMonth, secondYear))) || !(secondYear-firstYear<=1))
+        if( (!( validDate(firstDay, firstMonth, firstYear) && validDate(secondDay, secondMonth, secondYear))) || !(secondYear - firstYear <= 1))
         {
             System.out.println("Not a valid date ");
             return;

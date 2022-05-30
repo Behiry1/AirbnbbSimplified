@@ -35,9 +35,9 @@ public class User {
         this.gender = gender;
     }
 
-    //
-    // made static by zone to ease up process of signing in and up and to be more logical
-    public static void SignUp(){
+
+    public static void SignUp()
+    {
         String namee;
         String phoneNumberr;
         String passwordd;
@@ -81,11 +81,11 @@ public class User {
             Main.f.AddHost(namee,phoneNumberr,passwordd,emaill,nationn,idd,agee,genderr);
     }
 
-    //
-    // made static by zone
-    public static void SignIn() {
+
+    public static void SignIn()
+    {
         Scanner in = new Scanner(System.in);
-        int couter=3;
+        int couter = 3;
         int choice;
         String email;
         String pass;
@@ -93,40 +93,44 @@ public class User {
         System.out.println("1.traveler 2.hosts 3.Admin");
         choice = in.nextInt();
 
-        while (!(choice >=1 && choice <=3))
+        while (!(choice >= 1 && choice <= 3))
         {
                 System.out.println("Please enter a valid number");
                 choice = in.nextInt();
         }
 
         if(choice == 1) {
-            while(couter != 0){
+            while(couter != 0)
+            {
                 System.out.println("Please enter your email ");
                 email = in.next();
                 System.out.println("Please enter your password");
                 pass = in.next();
 
                 Traveler t = Main.f.SearchTravelersData(email,pass);
-                if(t!=null){
+                if(t != null)
+                {
                     System.out.println("Login successfully");
                     t.TravelerLoggedIn();
                     return;
                 }
-                else{
+                else {
                     System.out.println("Invalid please try again");
                     couter--;
                 }
             }
         }
         else if (choice == 2) {
-            while(couter != 0){
+            while(couter != 0)
+            {
                 System.out.println("Please enter your email ");
                 email = in.next();
                 System.out.println("Please enter your password");
                 pass = in.next();
 
                 Host h = Main.f.SearchHostsData(email,pass);
-                if(h!=null){
+                if(h != null)
+                {
                     System.out.println("Login successfully");
                     h.HostLoggedIn();
                     return;
@@ -140,12 +144,14 @@ public class User {
         }
         else
         {
-            while(couter != 0){
+            while(couter != 0)
+            {
                 System.out.println("Please enter your email ");
                 email = in.next();
                 System.out.println("Please enter your password");
                 pass = in.next();
-                if(Main.f.CheckAdmin(email,pass)){
+                if(Main.f.CheckAdmin(email,pass))
+                {
                     System.out.println("Login successfully");
 
                     Admin a = new Admin();

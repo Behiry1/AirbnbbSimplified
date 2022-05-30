@@ -29,7 +29,7 @@ static void ByeWorld()
 // just checks if the entered value is valid or not
 static int validateInput(int choice, int l, int r)
 {
-    while(!(choice>=l && choice<=r))
+    while(!(choice >= l && choice <= r))
     {
         System.out.println("Enter a valid answer");
         choice = in.nextInt();
@@ -55,21 +55,22 @@ static void LogIn()
 
         choice = validateInput(choice, 1, 2);
 
-        if(choice==2)return;
+        if(choice == 2)
+            return;
 
         User.SignIn();
     }
 }
 
-public static void main(String[] args)
-{
+   public static void main(String[] args)
+   {
 
-    HelloWorld();
+        HelloWorld();
 
-    LogIn();
+        LogIn();
 
-    ByeWorld();
-}
+       ByeWorld();
+   }
 }
 
 
