@@ -19,8 +19,8 @@ public class FilesHandeler
     HashMap<String, Host> HostInfo = new HashMap<String, Host>();
     HashMap<String, ArrayList<Properties>> CitySearch = new HashMap<String, ArrayList<Properties>>();
 
-    private final String HostPath = "C:/Users/Dell/Desktop/AirbnbbSimplified-master/Airbnb Simplified/src/AirBnb/Host_File.csv" ;
-    private final String TraverlerPath = "C:/Users/Dell/Desktop/AirbnbbSimplified-master/Airbnb Simplified/src/AirBnb/Traveller_file.csv";
+    private final String HostPath = "D:/Project/DataStrucures/Airbnb/Airbnb Simplified/src/AirBnb/Host_File.csv" ;
+    private final String TraverlerPath = "D:/Project/DataStrucures/Airbnb/Airbnb Simplified/src/AirBnb/Traveller_file.csv";
 
     int counter = 0;
     public ArrayList<Host> getHosts() {
